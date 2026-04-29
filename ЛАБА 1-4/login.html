@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход / Регистрация | Портфолио</title>
+    <style>
+        body {
+            font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+            background: white;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .auth-container {
+            border: 2px solid #333;
+            max-width: 450px;
+            width: 100%;
+            background: #f9f9f9;
+            box-shadow: 5px 5px 0 rgba(0,0,0,0.1);
+        }
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #333;
+        }
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            background: #e0e0e0;
+            cursor: pointer;
+            font-weight: bold;
+            border-right: 1px solid #333;
+            transition: background 0.2s;
+        }
+        .tab:last-child {
+            border-right: none;
+        }
+        .tab.active {
+            background: #f9f9f9;
+            border-bottom: 2px solid #f9f9f9;
+            margin-bottom: -1px;
+        }
+        .tab-content {
+            padding: 30px;
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            background: white;
+            box-sizing: border-box;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        input[type="submit"],
+        input[type="reset"],
+        .register-btn {
+            padding: 10px 20px;
+            background: #333;
+            color: white;
+            border: 1px solid #000;
+            cursor: pointer;
+            font-weight: bold;
+            width: 48%;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        input[type="reset"] {
+            background: #555;
+        }
+        input[type="submit"]:hover,
+        input[type="reset"]:hover,
+        .register-btn:hover {
+            background: #111;
+        }
+        .note {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 15px;
+            padding-bottom: 20px;
+        }
+        .back-link a {
+            color: black;
+            text-decoration: underline;
+        }
+        .password-hint {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <!-- Вкладки -->
+        <div class="tabs">
+            <div class="tab active" onclick="switchTab('login')">🔐 Вход</div>
+            <div class="tab" onclick="switchTab('register')">📝 Регистрация</div>
+        </div>
+
+        <!-- Форма авторизации -->
+        <div id="login" class="tab-content active">
+            <h2>Вход в систему</h2>
+            <form action="#" method="post">
+                <label for="login-username">Имя пользователя:</label>
+                <input type="text" id="login-username" name="username" placeholder="введите логин" required>
+
+                <label for="login-password">Пароль:</label>
+                <input type="password" id="login-password" name="password" placeholder="введите пароль" required>
+
+                <div class="buttons">
+                    <input type="submit" value="Войти">
+                    <input type="reset" value="Очистить">
+                </div>
+            </form>
+            <div class="note">
+                Нет аккаунта? <a href="#" onclick="switchTab('register'); return false;">Зарегистрироваться</a>
+            </div>
+        </div>
+
+        <!-- Форма регистрации -->
+        <div id="register" class="tab-content">
+            <h2>Регистрация</h2>
+            <form action="#" method="post">
+                <label for="reg-username">Имя пользователя:*</label>
+                <input type="text" id="reg-username" name="username" placeholder="придумайте логин" required>
+
+                <label for="reg-email">Email:*</label>
+                <input type="email" id="reg-email" name="email" placeholder="ваш email" required>
+
+                <label for="reg-password">Пароль:*</label>
+                <input type="password" id="reg-password" name="password" placeholder="минимум 6 символов" required>
+                <div class="password-hint">не менее 6 символов</div>
+
+                <label for="reg-confirm">Подтверждение пароля:*</label>
+                <input type="password" id="reg-confirm" name="confirm_password" placeholder="повторите пароль" required>
+
+                <div class="buttons">
+                    <input type="submit" value="Зарегистрироваться" class="register-btn">
+                    <input type="reset" value="Очистить">
+                </div>
+            </form>
+            <div class="note">
+                Уже есть аккаунт? <a href="#" onclick="switchTab('login'); return false;">Войти</a>
+            </div>
+        </div>
+
+        <!-- Ссылка на главную -->
+        <div class="back-link">
+            <a href="index.html" target="_blank">← Вернуться на главную</a>
+        </div>
+    </div>
+
+    <script>
+        function switchTab(tabId) {
+            // Скрываем все вкладки
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Убираем активный класс у всех кнопок вкладок
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Показываем выбранную вкладку
+            document.getElementById(tabId).classList.add('active');
+            
+            // Активируем соответствующую кнопку
+            const tabs = document.querySelectorAll('.tab');
+            if (tabId === 'login') {
+                tabs[0].classList.add('active');
+            } else {
+                tabs[1].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

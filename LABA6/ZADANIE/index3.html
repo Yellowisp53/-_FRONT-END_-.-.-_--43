@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адаптивная вёрстка - Grid | Петюшик Ф.Е.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            padding: 20px;
+        }
+        
+        /* ========== ВСЯ СТРАНИЦА НА GRID ========== */
+        .adaptive {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            background: #111;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(255,217,102,0.1);
+            border: 1px solid #ffd966;
+            
+            /* ГЛАВНЫЙ GRID КОНТЕЙНЕР */
+            display: grid;
+            grid-template-rows: auto auto 1fr auto;
+            grid-template-areas: 
+                "header"
+                "nav"
+                "content"
+                "footer";
+        }
+        
+        .header {
+            grid-area: header;
+            background: #2c2c2c;
+            color: #ffd966;
+            text-align: center;
+            padding: 22px;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #ffd966;
+            position: relative;
+        }
+        
+        .student-name {
+            font-size: 13px;
+            color: #aaa;
+            margin-top: 6px;
+            font-weight: normal;
+        }
+
+        /* ========== БУРГЕР-МЕНЮ ========== */
+        .burger-checkbox {
+            display: none;
+        }
+        .burger-icon {
+            display: none;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 100;
+        }
+        .burger-icon span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: #ffd966;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+        
+        .nav {
+            grid-area: nav;
+            background: #1a1a1a;
+            text-align: center;
+            padding: 12px;
+            border-bottom: 1px solid #ffd966;
+        }
+        .nav a {
+            color: #ffd966;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 8px 15px;
+            border-radius: 25px;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+        .nav a:hover {
+            background: #ffd966;
+            color: #000;
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 768px) {
+            .burger-icon {
+                display: flex;
+            }
+            .nav {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 70%;
+                max-width: 280px;
+                height: 100vh;
+                background: #111;
+                border-right: 2px solid #ffd966;
+                padding: 70px 20px 20px;
+                transition: left 0.3s ease;
+                z-index: 99;
+                text-align: left;
+            }
+            .nav a {
+                display: block;
+                margin: 15px 0;
+                padding: 10px 15px;
+                font-size: 16px;
+            }
+            .burger-checkbox:checked ~ .adaptive .nav {
+                left: 0;
+            }
+            .burger-checkbox:checked ~ .adaptive .burger-icon span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+            .burger-checkbox:checked ~ .adaptive .burger-icon span:nth-child(2) {
+                opacity: 0;
+            }
+            .burger-checkbox:checked ~ .adaptive .burger-icon span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+            .header {
+                padding: 22px 50px;
+            }
+        }
+
+        /* ========== КОНТЕНТ НА GRID ========== */
+        .content {
+            grid-area: content;
+            padding: 12px;
+        }
+        
+        .blocks-container {
+            display: grid;
+            gap: 12px;
+        }
+
+        .block {
+            background: #1a1a1a;
+            text-align: center;
+            padding: 55px 0;
+            border-radius: 12px;
+            border: 1px solid #ffd966;
+            font-weight: 600;
+            color: #ffd966;
+            transition: all 0.2s;
+        }
+        .block:hover {
+            background: #2a2a2a;
+            border-color: #ffaa33;
+        }
+
+        /* ДЕСКТОП (ширина > 1024px) — 3 колонки */
+        @media (min-width: 1025px) {
+            .blocks-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* ПЛАНШЕТ (768px - 1024px) — 2 колонки */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .blocks-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ТЕЛЕФОН (до 768px) — 1 колонка */
+        @media (max-width: 768px) {
+            .blocks-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .social a {
+            color: #ffd966;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .social a:hover {
+            color: #ffaa33;
+            text-decoration: underline;
+        }
+        
+        .footer {
+            grid-area: footer;
+            background: #2c2c2c;
+            color: #aaa;
+            text-align: center;
+            padding: 18px;
+            font-size: 13px;
+            border-top: 2px solid #ffd966;
+        }
+        
+        .group-info {
+            background: #1a1a1a;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #ffd966;
+        }
+    </style>
+</head>
+<body>
+    <!-- Бургер-меню снаружи, чтобы работало -->
+    <input type="checkbox" id="burger-toggle" class="burger-checkbox">
+    <label for="burger-toggle" class="burger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <div class="adaptive">
+        <div class="header">
+            <span class="logo-text">📱 Адаптивный макет (Grid)</span>
+            <div class="student-name">🎓 Петюшик Филипп Егорович | ПЗТ-43 | Вариант 0</div>
+        </div>
+
+        <div class="nav">
+            <a href="#">Главная</a>
+            <a href="#">О нас</a>
+            <a href="#">Услуги</a>
+            <a href="#">Портфолио</a>
+            <a href="#">Блог</a>
+            <a href="#">Контакты</a>
+        </div>
+
+        <div class="content">
+            <div class="blocks-container">
+                <div class="block">📦 Блок 1</div>
+                <div class="block">📦 Блок 4</div>
+                <div class="block">📦 Блок 5</div>
+                <div class="block">📦 Блок 2</div>
+                <div class="block">📦 Блок 3</div>
+                <div class="block">📦 Блок 6</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 Адаптивная вёрстка (Grid) | Петюшик Филипп Егорович</p>
+            <div class="social">
+                <a href="#">VK</a> | <a href="#">Instagram</a> | <a href="#">Telegram</a>
+            </div>
+            <div class="group-info">
+                ✅ Выполнил: Петюшик Филипп Егорович (ПЗТ-43) | Полная Grid-верстка + медиазапросы + Бургер-меню | Вариант 0
+            </div>
+        </div>
+    </div>
+</body>
+</html>

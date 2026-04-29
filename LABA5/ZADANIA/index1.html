@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Фиксированная вёрстка - Вариант 0 | Петюшик Ф.Е.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            padding: 20px;
+        }
+        .fixed {
+            width: 1280px;
+            margin: 0 auto;
+            background: #111;
+            box-shadow: 0 2px 15px rgba(255,217,102,0.2);
+            border: 1px solid #ffd966;
+        }
+        .header {
+            background: #2c2c2c;
+            color: #ffd966;
+            text-align: center;
+            padding: 20px;
+            border-bottom: 2px solid #ffd966;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .student-name {
+            font-size: 14px;
+            color: #aaa;
+            margin-top: 8px;
+        }
+        .nav {
+            background: #1a1a1a;
+            text-align: center;
+            padding: 12px;
+            border-bottom: 1px solid #ffd966;
+        }
+        .nav a {
+            color: #ffd966;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        .nav a:hover {
+            color: #ffaa33;
+            text-decoration: underline;
+        }
+        .row {
+            display: flex;
+        }
+        .block-1, .block-2, .block-3 {
+            width: 500px;
+            background: #1a1a1a;
+            text-align: center;
+            padding: 60px 0;
+            border: 1px solid #ffd966;
+            color: #ffd966;
+        }
+        .block-4, .block-5, .block-6 {
+            flex: 1;
+            background: #1a1a1a;
+            text-align: center;
+            padding: 60px 0;
+            border: 1px solid #ffd966;
+            color: #ffd966;
+        }
+        .footer {
+            background: #2c2c2c;
+            color: #aaa;
+            text-align: center;
+            padding: 20px;
+            border-top: 2px solid #ffd966;
+        }
+        .footer p {
+            margin-bottom: 10px;
+        }
+        .social a {
+            color: #ffd966;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .social a:hover {
+            color: #ffaa33;
+        }
+        .group-info {
+            background: #1a1a1a;
+            text-align: center;
+            padding: 8px;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #ffd966;
+        }
+    </style>
+</head>
+<body>
+    <div class="fixed">
+        <div class="header">
+            <div class="logo">ЛОГОТИП</div>
+            <div class="student-name">Петюшик Филипп Егорович | ПЗТ-43</div>
+        </div>
+        <div class="nav">
+            <a href="#">Главная</a>
+            <a href="#">О нас</a>
+            <a href="#">Услуги</a>
+            <a href="#">Портфолио</a>
+            <a href="#">Блог</a>
+            <a href="#">Контакты</a>
+        </div>
+        <div class="row">
+            <div class="block-1">1 (500px)</div>
+            <div class="block-4">4 (оставшаяся часть)</div>
+        </div>
+        <div class="row">
+            <div class="block-2">2 (500px)</div>
+            <div class="block-5">5 (оставшаяся часть)</div>
+        </div>
+        <div class="row">
+            <div class="block-3">3 (500px)</div>
+            <div class="block-6">6 (оставшаяся часть)</div>
+        </div>
+        <div class="footer">
+            <p>© 2026 Фиксированная вёрстка | Петюшик Филипп Егорович</p>
+            <div class="social">
+                <a href="#">VK</a> | <a href="#">Instagram</a> | <a href="#">Telegram</a>
+            </div>
+        </div>
+        <div class="group-info">
+            Выполнил: Петюшик Филипп Егорович, группа ПЗТ-43 | Вариант 0
+        </div>
+    </div>
+</body>
+</html>

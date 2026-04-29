@@ -1,0 +1,199 @@
+/* ========== ГЛОБАЛЬНЫЕ СТИЛИ ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Чтобы padding не увеличивал ширину блоков */
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center; /* Центрируем карточку по горизонтали */
+    padding: 50px;
+}
+
+/* ========== ГЛАВНЫЙ КОНТЕЙНЕР ========== */
+.product-card {
+    background: #fff;
+    width: 900px;
+    border-radius: 4px;
+    padding: 25px;
+    position: relative; /* Нужно для позиционирования желтого ярлыка внутри */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Желтый ярлык "Рассрочка" */
+.badge-installment {
+    position: absolute; /* Вырываем из потока и ставим в точные координаты */
+    top: 15px;
+    left: 15px;
+    background: #FFD700;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 2; /* Чтобы был поверх картинки */
+}
+
+/* ========== СЕТКА КАРТОЧКИ (GRID) ========== */
+.card-content {
+    display: grid;
+    /* Делим на 3 колонки: Фото (180px), Инфо (занимает остаток), Экшн-блок (280px) */
+    grid-template-columns: 180px 1fr 280px; 
+    gap: 30px; /* Расстояние между колонками */
+}
+
+/* 1. Левая колонка (Фото) */
+.image-section {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Распределяет точки сверху и снизу */
+}
+
+.main-photo {
+    width: 100%;
+    height: auto;
+    margin: 10px 0;
+}
+
+.dots-top, .dots-bottom {
+    font-size: 10px;
+    color: #ccc;
+    letter-spacing: 2px;
+}
+
+/* 2. Центральная колонка (Описание) */
+.product-title {
+    font-size: 18px;
+    color: #333e48;
+    margin-bottom: 10px;
+}
+
+.in-stock {
+    color: #888;
+    font-size: 13px;
+}
+
+.rating-row {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.star { color: #ddd; }
+.star.filled { color: #ffbc00; }
+.reviews-count { color: #888; font-size: 13px; }
+
+.specs-list {
+    margin-top: 15px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* Серый цвет для названий характеристик (Конструкция, Исполнение...) */
+.specs-list span {
+    color: #888;
+}
+
+/* 3. Правая колонка (Цена и кнопка) */
+.action-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Прижимаем цену и кнопку к правому краю */
+}
+
+.price-block {
+    margin-bottom: 10px;
+}
+
+.price-label {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.price-value {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Фиолетовая плашка с бонусами */
+.bonus-tag {
+    background: #f0edff;
+    color: #6c5ce7;
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 13px;
+    margin-bottom: 40px; /* Отступ до нижнего ряда с кнопкой */
+}
+
+/* Нижний ряд: переключатель + кнопка */
+.purchase-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.buy-button {
+    background: #ff6b35; 
+    color: white;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 25px; /* Закругленные края (форма таблетки) */
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ========== КАСТОМНЫЙ ПЕРЕКЛЮЧАТЕЛЬ (SWITCH) ========== */
+.compare-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.compare-label {
+    font-size: 13px;
+    color: #888;
+}
+
+/* Контейнер для слайдера */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+}
+
+/* Скрываем стандартный некрасивый чекбокс */
+.switch input { display: none; }
+
+/* Фон слайдера */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 20px;
+}
+
+/* Белый кружок внутри слайдера */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px; width: 14px;
+    left: 3px; bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+/* Эффект при нажатии (когда чекбокс активен) */
+input:checked + .slider { background-color: #ff6b35; } /* Меняем фон на оранжевый */
+input:checked + .slider:before { transform: translateX(20px); } /* Двигаем кружок вправо */

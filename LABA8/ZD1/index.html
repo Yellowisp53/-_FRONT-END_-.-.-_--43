@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказать | Форма</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <!-- ЗАЛИТЫЙ ЖЁЛТЫЙ ПРЯМОУГОЛЬНИК НА ВСЮ ШИРИНУ -->
+        <div class="yellow-header">
+            <h1 class="form-title">Заказать</h1>
+        </div>
+        
+        <!-- Блендер и стоимость по ЛЕВОМУ КРАЮ -->
+        <div class="product-block">
+            <div class="product-name">Блендер</div>
+            <div class="product-price">Стоимость: 1 000 ₽</div>
+        </div>
+        
+        <form class="order-form">
+            <div class="form-field">
+                <label>Цвет</label>
+                <div class="select-wrapper">
+                    <select>
+                        <option>Красный</option>
+                        <option>Синий</option>
+                        <option>Черный</option>
+                        <option>Белый</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-field">
+                <label>Ваше Имя</label>
+                <input type="text" placeholder="Ваше Имя">
+            </div>
+            
+            <div class="form-field">
+                <label>Email *</label>
+                <input type="email" placeholder="Email *">
+            </div>
+            
+            <div class="form-field">
+                <label>Телефон *</label>
+                <input type="tel" placeholder="Телефон *">
+            </div>
+            
+            <!-- Чекбокс: текст на две строки -->
+            <div class="checkbox-field">
+                <input type="checkbox" id="agree">
+                <label for="agree">
+                    <span class="black-text">Я принимаю условия</span>
+                    <span class="yellow-text">политики обработки<br>персональных данных</span>
+                </label>
+            </div>
+            
+            <button type="submit" class="submit-btn yellow-btn">Оформить заявку</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,160 @@
+/* ========== ОБЩИЕ СТИЛИ ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #e8e8e8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ========== КОНТЕЙНЕР ФОРМЫ ========== */
+.form-container {
+    max-width: 480px;
+    width: 100%;
+    background: white;
+    border-radius: 0px;
+    padding: 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* ========== ЗАЛИТЫЙ ЖЁЛТЫЙ ПРЯМОУГОЛЬНИК НА ВСЮ ШИРИНУ ========== */
+.yellow-header {
+    background-color: #eab010fb;
+    padding: 16px 24px;
+    text-align: center;
+}
+
+.form-title {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+/* ========== БЛОК С ТОВАРОМ (по левому краю) ========== */
+.product-block {
+    padding: 24px 24px 0 24px;
+    text-align: left;
+    margin-bottom: 20px;  /* Добавил отступ после стоимости */
+}
+
+.product-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+}
+
+.product-price {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+/* ========== ПОЛЯ ФОРМЫ ========== */
+.order-form {
+    padding: 0 24px 24px 24px;
+}
+
+.form-field {
+    margin-bottom: 20px;
+}
+
+.form-field label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-field input,
+.form-field select {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #ddd;
+    border-radius: 0px;
+    font-size: 15px;
+    background: white;
+    transition: all 0.3s;
+}
+
+.form-field input:focus,
+.form-field select:focus {
+    outline: none;
+    border-color: #e6ba1d;
+}
+
+/* Стили для select */
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+/* ========== ЧЕКБОКС: ДВЕ СТРОКИ, ЧЁРНЫЙ + ЖЁЛТЫЙ ========== */
+.checkbox-field {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 24px 0;
+}
+
+.checkbox-field input {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.checkbox-field label {
+    font-size: 13px;
+    line-height: 1.4;
+    display: inline; 
+}
+
+.black-text {
+    color: #1a1a1a;
+    font-weight: normal;
+}
+
+.yellow-text {
+    color: #e6ba1d !important;
+    font-weight: 500;
+}
+
+/* ========== ЖЁЛТАЯ КНОПКА ========== */
+.submit-btn {
+    width: 100%;
+    border: none;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 0px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.yellow-btn {
+    background: #e6ba1d;
+    color: #1a1a1a;
+}
+
+.yellow-btn:hover {
+    background: #d4a80a;
+    transform: translateY(-1px);
+}

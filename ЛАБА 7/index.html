@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Адаптивная вёрстка - Grid | Петюшик Ф.Е.</title>
+    <style>
+        /* ========== ГЛОБАЛЬНЫЕ СТИЛИ ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            padding: 20px;
+        }
+        
+        /* ========== ВСЯ СТРАНИЦА НА GRID ========== */
+        .adaptive {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            background: #111;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(255,217,102,0.1);
+            border: 1px solid #ffd966;
+            
+            display: grid;
+            grid-template-rows: auto auto 1fr auto;
+            grid-template-areas: 
+                "header"
+                "nav"
+                "content"
+                "footer";
+        }
+        
+        .header {
+            grid-area: header;
+            background: #2c2c2c;
+            color: #ffd966;
+            text-align: center;
+            padding: 22px;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #ffd966;
+            position: relative;
+        }
+        
+        .student-name {
+            font-size: 13px;
+            color: #aaa;
+            margin-top: 6px;
+            font-weight: normal;
+        }
+
+        /* ========== БУРГЕР-МЕНЮ ========== */
+        .burger-checkbox {
+            display: none;
+        }
+        .burger-icon {
+            display: none;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 30px;
+            height: 25px;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-between;
+            z-index: 100;
+        }
+        .burger-icon span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: #ffd966;
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+        
+        .nav {
+            grid-area: nav;
+            background: #1a1a1a;
+            text-align: center;
+            padding: 12px;
+            border-bottom: 1px solid #ffd966;
+        }
+        .nav a {
+            color: #ffd966;
+            margin: 0 15px;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 8px 15px;
+            border-radius: 25px;
+            transition: all 0.2s;
+            display: inline-block;
+        }
+        .nav a:hover {
+            background: #ffd966;
+            color: #000;
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 768px) {
+            .burger-icon {
+                display: flex;
+            }
+            .nav {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 70%;
+                max-width: 280px;
+                height: 100vh;
+                background: #111;
+                border-right: 2px solid #ffd966;
+                padding: 70px 20px 20px;
+                transition: left 0.3s ease;
+                z-index: 99;
+                text-align: left;
+            }
+            .nav a {
+                display: block;
+                margin: 15px 0;
+                padding: 10px 15px;
+                font-size: 16px;
+            }
+            .burger-checkbox:checked ~ .adaptive .nav {
+                left: 0;
+            }
+            .burger-checkbox:checked ~ .adaptive .burger-icon span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+            .burger-checkbox:checked ~ .adaptive .burger-icon span:nth-child(2) {
+                opacity: 0;
+            }
+            .burger-checkbox:checked ~ .adaptive .burger-icon span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+            .header {
+                padding: 22px 50px;
+            }
+        }
+
+        /* ========== КОНТЕНТ НА GRID ========== */
+        .content {
+            grid-area: content;
+            padding: 12px;
+        }
+        
+        .blocks-container {
+            display: grid;
+            gap: 20px;
+        }
+
+        /* ДЕСКТОП (ширина > 1024px) — 3 колонки */
+        @media (min-width: 1025px) {
+            .blocks-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* ПЛАНШЕТ (768px - 1024px) — 2 колонки */
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .blocks-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* ТЕЛЕФОН (до 768px) — 1 колонка */
+        @media (max-width: 768px) {
+            .blocks-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========== СТИЛИ КАРТОЧКИ ТОВАРА ========== */
+        .product-card {
+            background: #fff;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-card .card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .badge-installment {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #e6ba1d;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            color: #1a1a1a;
+            z-index: 2;
+        }
+        
+        .image-section {
+            text-align: center;
+        }
+        
+        .main-photo {
+            width: 100%;
+            height: auto;
+            max-height: 180px;
+            object-fit: contain;
+        }
+        
+        .product-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333e48;
+            margin-bottom: 8px;
+        }
+        
+        .in-stock {
+            color: #27ae60;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+        
+        .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .stars {
+            display: flex;
+            gap: 2px;
+        }
+        
+        .star {
+            color: #ddd;
+            font-size: 14px;
+        }
+        
+        .star.filled {
+            color: #f5c518;
+        }
+        
+        .reviews-count {
+            color: #888;
+            font-size: 12px;
+        }
+        
+        .specs-list {
+            font-size: 12px;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .specs-list span {
+            color: #888;
+        }
+        
+        .price-block {
+            margin-bottom: 8px;
+        }
+        
+        .price-label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .price-value {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .bonus-tag {
+            background: rgba(0, 150, 200, 0.15);
+            border: 1px solid rgba(0, 150, 200, 0.3);
+            color: #1a6e8a;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .purchase-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .compare-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .compare-label {
+            font-size: 13px;
+            color: #888;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+        
+        .switch input {
+            display: none;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 20px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #e6ba1d;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+        
+        .buy-button {
+            background: #e6ba1d;
+            color: #1a1a1a;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .buy-button:hover {
+            background: #d4a80a;
+            transform: translateY(-1px);
+        }
+        
+        /* ========== СТИЛИ ФОРМЫ РЕГИСТРАЦИИ ========== */
+        .form-container {
+            background: white;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .yellow-header {
+            background-color: #eab010fb;
+            padding: 16px 24px;
+            text-align: center;
+        }
+        
+        .form-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin: 0;
+        }
+        
+        .product-block {
+            padding: 20px 20px 0 20px;
+            text-align: left;
+            margin-bottom: 15px;
+        }
+        
+        .product-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        
+        .product-price {
+            font-size: 16px;
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+        
+        .order-form {
+            padding: 0 20px 20px 20px;
+        }
+        
+        .form-field {
+            margin-bottom: 15px;
+        }
+        
+        .form-field label {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 6px;
+        }
+        
+        .form-field input,
+        .form-field select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 0px;
+            font-size: 14px;
+            background: white;
+            transition: all 0.3s;
+        }
+        
+        .form-field input:focus,
+        .form-field select:focus {
+            outline: none;
+            border-color: #e6ba1d;
+        }
+        
+        .select-wrapper {
+            position: relative;
+        }
+        
+        .select-wrapper select {
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+        }
+        
+        .checkbox-field {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .checkbox-field input {
+            width: 16px;
+            height: 16px;
+            margin-top: 2px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .checkbox-field label {
+            font-size: 12px;
+            line-height: 1.4;
+            display: inline;
+        }
+        
+        .black-text {
+            color: #1a1a1a;
+            font-weight: normal;
+        }
+        
+        .yellow-text {
+            color: #e6ba1d !important;
+            font-weight: 500;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            border: none;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 0px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .yellow-btn {
+            background: #e6ba1d;
+            color: #1a1a1a;
+        }
+        
+        .yellow-btn:hover {
+            background: #d4a80a;
+            transform: translateY(-1px);
+        }
+        
+        /* ========== АДАПТИВНОЕ СЖАТИЕ КАРТОЧКИ И ФОРМЫ ========== */
+        @media (max-width: 1024px) {
+            .product-card .card-content {
+                padding: 15px;
+                gap: 10px;
+            }
+            .product-title {
+                font-size: 14px;
+            }
+            .price-value {
+                font-size: 16px;
+            }
+            .buy-button {
+                padding: 6px 15px;
+                font-size: 12px;
+            }
+            .specs-list {
+                font-size: 10px;
+            }
+            .main-photo {
+                max-height: 130px;
+            }
+            .form-title {
+                font-size: 22px;
+            }
+            .product-name {
+                font-size: 16px;
+            }
+            .product-price {
+                font-size: 14px;
+            }
+            .yellow-header {
+                padding: 12px 20px;
+            }
+            .product-block {
+                padding: 15px 15px 0 15px;
+            }
+            .order-form {
+                padding: 0 15px 15px 15px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .product-card .card-content {
+                padding: 12px;
+                gap: 8px;
+            }
+            .product-title {
+                font-size: 13px;
+            }
+            .buy-button {
+                padding: 5px 12px;
+                font-size: 11px;
+            }
+            .specs-list {
+                font-size: 9px;
+            }
+            .main-photo {
+                max-height: 110px;
+            }
+            .form-title {
+                font-size: 20px;
+            }
+        }
+        
+        /* ========== ПУСТЫЕ БЛОКИ-ЗАГЛУШКИ ========== */
+        .block-placeholder {
+            background: #1a1a1a;
+            text-align: center;
+            padding: 25px 15px;
+            border-radius: 12px;
+            border: 1px solid #ffd966;
+            font-weight: 600;
+            color: #ffd966;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .block-placeholder:hover {
+            background: #2a2a2a;
+            border-color: #ffaa33;
+        }
+        
+        .placeholder-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #ffd966;
+        }
+        
+        .placeholder-name {
+            font-size: 14px;
+            color: #aaa;
+        }
+        
+        .placeholder-group {
+            font-size: 12px;
+            color: #888;
+        }
+        
+        @media (max-width: 1024px) {
+            .placeholder-title {
+                font-size: 14px;
+            }
+            .placeholder-name {
+                font-size: 11px;
+            }
+            .placeholder-group {
+                font-size: 10px;
+            }
+            .block-placeholder {
+                padding: 18px 10px;
+            }
+        }
+
+        .social a {
+            color: #ffd966;
+            margin: 0 10px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .social a:hover {
+            color: #ffaa33;
+            text-decoration: underline;
+        }
+        
+        .footer {
+            grid-area: footer;
+            background: #2c2c2c;
+            color: #aaa;
+            text-align: center;
+            padding: 18px;
+            font-size: 13px;
+            border-top: 2px solid #ffd966;
+        }
+        
+        .group-info {
+            background: #1a1a1a;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #ffd966;
+        }
+    </style>
+</head>
+<body>
+    <!-- Бургер-меню -->
+    <input type="checkbox" id="burger-toggle" class="burger-checkbox">
+    <label for="burger-toggle" class="burger-icon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <div class="adaptive">
+        <div class="header">
+            <span class="logo-text">📱 Адаптивный макет (Grid)</span>
+            <div class="student-name">🎓 Петюшик Филипп Егорович | ПЗТ-43 | Вариант 0</div>
+        </div>
+
+        <div class="nav">
+            <a href="#">Главная</a>
+            <a href="#">О нас</a>
+            <a href="#">Услуги</a>
+            <a href="#">Портфолио</a>
+            <a href="#">Блог</a>
+            <a href="#">Контакты</a>
+        </div>
+
+        <div class="content">
+            <div class="blocks-container">
+                <!-- КАРТОЧКА ТОВАРА -->
+                <div class="product-card">
+                    <div class="badge-installment">Рассрочка 6 мес.</div>
+                    <div class="card-content">
+                        <div class="image-section">
+                            <img src="holodos.jpg" alt="Bosch KGN39XI28R" class="main-photo">
+                        </div>
+                        <div class="info-section">
+                            <h2 class="product-title">Холодильник Bosch KGN39XI28R</h2>
+                            <div class="in-stock">✓ в наличии</div>
+                            <div class="rating-row">
+                                <div class="stars">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                                <span class="reviews-count">(6)</span>
+                            </div>
+                            <div class="specs-list">
+                                <p><span>Конструкция:</span> с нижней морозильной камерой</p>
+                                <p><span>Исполнение:</span> свободностоящее</p>
+                                <p><span>Система охлаждения:</span> полный No Frost</p>
+                            </div>
+                        </div>
+                        <div class="action-section">
+                            <div class="price-block">
+                                <span class="price-label">Цена:</span>
+                                <span class="price-value">4 716,34 руб.</span>
+                            </div>
+                            <div class="bonus-tag">94,33 балла на счет</div>
+                            <div class="purchase-row">
+                                <div class="compare-toggle">
+                                    <span class="compare-label">Сравнить</span>
+                                    <label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label>
+                                </div>
+                                <button class="buy-button">Купить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ФОРМА РЕГИСТРАЦИИ -->
+                <div class="form-container">
+                    <div class="yellow-header">
+                        <h1 class="form-title">Заказать</h1>
+                    </div>
+                    
+                    <div class="product-block">
+                        <div class="product-name">Блендер</div>
+                        <div class="product-price">Стоимость: 1 000 ₽</div>
+                    </div>
+                    
+                    <form class="order-form">
+                        <div class="form-field">
+                            <label>Цвет</label>
+                            <div class="select-wrapper">
+                                <select>
+                                    <option>Красный</option>
+                                    <option>Синий</option>
+                                    <option>Черный</option>
+                                    <option>Белый</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-field">
+                            <label>Ваше Имя</label>
+                            <input type="text" placeholder="Ваше Имя">
+                        </div>
+                        
+                        <div class="form-field">
+                            <label>Email *</label>
+                            <input type="email" placeholder="Email *">
+                        </div>
+                        
+                        <div class="form-field">
+                            <label>Телефон *</label>
+                            <input type="tel" placeholder="Телефон *">
+                        </div>
+                        
+                        <div class="checkbox-field">
+                            <input type="checkbox" id="agree">
+                            <label for="agree">
+                                <span class="black-text">Я принимаю условия</span>
+                                <span class="yellow-text">политики обработки<br>персональных данных</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn yellow-btn">Оформить заявку</button>
+                    </form>
+                </div>
+                
+                <!-- 4 ПУСТЫХ БЛОКА-ЗАГЛУШКИ -->
+                <div class="block-placeholder">
+                    <div class="placeholder-title">ПСИП</div>
+                    <div class="placeholder-name">Филипп Петюшик Егорович</div>
+                    <div class="placeholder-group">ПЗТ-43</div>
+                </div>
+                <div class="block-placeholder">
+                    <div class="placeholder-title">ПСИП</div>
+                    <div class="placeholder-name">Филипп Петюшик Егорович</div>
+                    <div class="placeholder-group">ПЗТ-43</div>
+                </div>
+                <div class="block-placeholder">
+                    <div class="placeholder-title">ПСИП</div>
+                    <div class="placeholder-name">Филипп Петюшик Егорович</div>
+                    <div class="placeholder-group">ПЗТ-43</div>
+                </div>
+                <div class="block-placeholder">
+                    <div class="placeholder-title">ПСИП</div>
+                    <div class="placeholder-name">Филипп Петюшик Егорович</div>
+                    <div class="placeholder-group">ПЗТ-43</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 Адаптивная вёрстка (Grid) | Петюшик Филипп Егорович</p>
+            <div class="social">
+                <a href="#">VK</a> | <a href="#">Instagram</a> | <a href="#">Telegram</a>
+            </div>
+            <div class="group-info">
+                ✅ Выполнил: Петюшик Филипп Егорович (ПЗТ-43) | Полная Grid-верстка + медиазапросы + Бургер-меню | Вариант 0
+            </div>
+        </div>
+    </div>
+</body>
+</html>

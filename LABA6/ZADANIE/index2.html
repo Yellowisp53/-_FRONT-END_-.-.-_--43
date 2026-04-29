@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Резиновая вёрстка - Grid | Петюшик Ф.Е.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a1a;
+            padding: 20px;
+        }
+        .fluid {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(255,217,102,0.1);
+            border: 1px solid #ffd966;
+        }
+        .header {
+            background: #2c2c2c;
+            color: #ffd966;
+            text-align: center;
+            padding: 18px;
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #ffd966;
+        }
+        .student-name {
+            font-size: 13px;
+            color: #aaa;
+            margin-top: 6px;
+            font-weight: normal;
+        }
+        .nav {
+            background: #1a1a1a;
+            text-align: center;
+            padding: 12px;
+            border-bottom: 1px solid #ffd966;
+        }
+        .nav a {
+            color: #ffd966;
+            margin: 0 18px;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 4px 8px;
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+        .nav a:hover {
+            background: #ffd966;
+            color: #000;
+        }
+
+        /* ========== GRID СЕТКА ========== */
+        /* Ряд 1: блок 1 (30%) + блок 4 (40%) + блок 5 (оставшаяся часть) */
+        .row-1 {
+            display: grid;
+            grid-template-columns: 30% 40% 1fr;
+            gap: 8px;
+            padding: 8px;
+        }
+
+        /* Ряд 2: блок 2 (30%) + блок 5 (оставшаяся) + блок 6 (оставшаяся) */
+        .row-2 {
+            display: grid;
+            grid-template-columns: 30% 1fr 1fr;
+            gap: 8px;
+            padding: 8px;
+        }
+
+        /* Ряд 3: блок 3 (30%) + блок 5 (оставшаяся) + блок 6 (оставшаяся) */
+        .row-3 {
+            display: grid;
+            grid-template-columns: 30% 1fr 1fr;
+            gap: 8px;
+            padding: 8px;
+        }
+
+        /* Общие стили для всех блоков */
+        .block {
+            background: #1a1a1a;
+            text-align: center;
+            padding: 50px 0;
+            border-radius: 10px;
+            border: 1px solid #ffd966;
+            font-weight: bold;
+            color: #ffd966;
+        }
+
+        .footer {
+            background: #2c2c2c;
+            color: #aaa;
+            text-align: center;
+            padding: 16px;
+            font-size: 13px;
+            border-top: 2px solid #ffd966;
+        }
+        .social a {
+            color: #ffd966;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .social a:hover {
+            color: #ffaa33;
+            text-decoration: underline;
+        }
+        .group-info {
+            background: #1a1a1a;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            color: #888;
+            border-top: 1px solid #ffd966;
+        }
+    </style>
+</head>
+<body>
+    <div class="fluid">
+        <div class="header">
+            🌐 Мой сайт (резиновая вёрстка - Grid)
+            <div class="student-name">📌 Петюшик Филипп Егорович | ПЗТ-43 | Вариант 0</div>
+        </div>
+        <div class="nav">
+            <a href="#">Главная</a>
+            <a href="#">О нас</a>
+            <a href="#">Услуги</a>
+            <a href="#">Портфолио</a>
+            <a href="#">Блог</a>
+            <a href="#">Контакты</a>
+        </div>
+
+        <!-- Ряд 1: блок 1 (30%) + блок 4 (40%) + блок 5 (оставшаяся) -->
+        <div class="row-1">
+            <div class="block block-1">📦 1 (30%)</div>
+            <div class="block block-4">📦 4 (40%)</div>
+            <div class="block block-5">📦 5 (оставшаяся часть)</div>
+        </div>
+
+        <!-- Ряд 2: блок 2 (30%) + блок 5 + блок 6 -->
+        <div class="row-2">
+            <div class="block block-2">📦 2 (30%)</div>
+            <div class="block block-5">📦 5 (оставшаяся часть)</div>
+            <div class="block block-6">📦 6 (оставшаяся часть)</div>
+        </div>
+
+        <!-- Ряд 3: блок 3 (30%) + блок 5 + блок 6 -->
+        <div class="row-3">
+            <div class="block block-3">📦 3 (30%)</div>
+            <div class="block block-5">📦 5 (оставшаяся часть)</div>
+            <div class="block block-6">📦 6 (оставшаяся часть)</div>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 Резиновая вёрстка (Grid) | Петюшик Филипп Егорович</p>
+            <div class="social">
+                <a href="#">VK</a> | <a href="#">Instagram</a> | <a href="#">Telegram</a>
+            </div>
+        </div>
+        <div class="group-info">
+            ✅ Выполнил: Петюшик Филипп Егорович (ПЗТ-43) | Резиновая вёрстка на Grid | Вариант 0
+        </div>
+    </div>
+</body>
+</html>

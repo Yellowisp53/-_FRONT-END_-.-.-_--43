@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Петюшик Филипп | Менеджер и видеомонтажёр</title>
+    
+    <!-- ============================================ -->
+    <!-- СПОСОБ 1: ИМПОРТ ШРИФТОВ (@import)-->
+    <!-- ============================================ -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Playfair+Display&display=swap');
+    </style>
+    
+    <!-- ============================================ -->
+    <!-- СПОСОБ 2: ВНЕШНИЙ ФАЙЛ СТИЛЕЙ (external CSS) -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- ============================================ -->
+    <!-- СПОСОБ 3: ВНУТРЕННИЕ СТИЛИ (internal CSS)-->
+      <!-- ============================================ -->
+    <style>
+        /* Демонстрация каскадности - этот стиль дополнит внешний файл */
+        .highlight {
+            text-shadow: 0 0 5px rgba(255,217,102,0.5);
+        }
+        
+        /* Дополнительный стиль для демонстрации */
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Кнопка авторизации -->
+        <div class="auth-button">
+            <a href="login.html" target="_blank">🔐 Авторизация</a>
+        </div>
+        
+        <!-- ============================================ -->
+        <!-- СПОСОБ 4: ВСТРОЕННЫЕ СТИЛИ (inline CSS)      -->
+        <!-- Атрибут style непосредственно в теге header   -->
+        <!-- ============================================ -->
+        <header style="text-align: center;">
+            <img src="./images/1.jpg" alt="Филипп Петюшик" width="150">
+            <h1>Петюшик Филипп Егорович</h1>
+            <p><strong>18 лет</strong> | <em>менеджер и видеомонтажёр</em></p>
+            <p>Гродно, Беларусь</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#about">Обо мне</a></li>
+                <li><a href="#skills">Навыки</a></li>
+                <li><a href="#projects">Проекты</a></li>
+                <li><a href="#media">Видео/аудио</a></li>
+                <li><a href="#form">Связь</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="about">
+                <h2>Обо мне</h2>
+                <p><b>Образование:</b> Гродненский государственный политехнический колледж, <u>специальность "Программист"</u> (3 курс).</p>
+                <p><b>Работа:</b> Product manager в <i>Nothing AI</i> + видеомонтажёр в <i>Rare Mod</i>.</p>
+                <p><b>Хобби:</b> спорт, спортивный зал <abbr title="Спортклуб">Iron</abbr>.</p>
+                <p class="highlight">✨ Готов к сотрудничеству!</p>
+            </section>
+
+            <section id="skills">
+                <h2>Мои навыки</h2>
+                <h3>Инструменты PM</h3>
+                <ul>
+                    <li>Google Gemini (AI-ассистент)</li>
+                    <li>HeyGen (генерация видео)</li>
+                    <li>Notion (ведение проектов)</li>
+                </ul>
+                <h3>Программы для монтажа</h3>
+                <ol>
+                    <li>Adobe Premiere Pro</li>
+                    <li>Adobe After Effects</li>
+                    <li>Topas AI</li>
+                </ol>
+                <h3>Мой путь</h3>
+                <dl>
+                    <dt>2026 год</dt>
+                    <dd>Начал работать в Nothing AI</dd>
+                    <dt>2025 год</dt>
+                    <dd>Стал видеомонтажёром в Rare Mod</dd>
+                </dl>
+            </section>
+
+            <section id="projects">
+                <h2>Мои проекты</h2>
+                <h3>Выполненные работы</h3>
+                <table>
+                    <tr><th>Проект</th><th>Роль</th><th>Год</th></tr>
+                    <tr><td>Рекламная кампания AI-стартапа</td><td>Product manager</td><td>2026</td></tr>
+                    <tr><td>Промо-ролик для Rare Mod</td><td>Видеомонтажёр</td><td>2025</td></tr>
+                    <tr><td>Музыкальный клип</td><td>Режиссёр монтажа</td><td>2025</td></tr>
+                </table>
+                <h3>Мой график</h3>
+                <table>
+                    <tr><th colspan="2">Чем занимаюсь</th><th>Время</th></tr>
+                    <tr><td rowspan="2">Учёба</td><td>Колледж</td><td>9:00-16:00</td></tr>
+                    <tr><td>Самообучение</td><td>21:00-23:00</td></tr>
+                    <tr><td colspan="2">Работа</td><td>17:00-21:00</td></tr>
+                </table>
+            </section>
+
+            <section id="media">
+                <h2>Медиа-материалы</h2>
+                <h3>Мои соцсети</h3>
+                <p><a href="https://www.instagram.com/yellowisp53" target="_blank">Instagram</a></p>
+                <p><a href="https://t.me/Yellowisp53" target="_blank">Telegram</a></p>
+                <h3>Подкаст о монтаже</h3>
+                <audio controls><source src="./sound/a1.ogg" type="audio/ogg"></audio>
+                <h3>Пример моей работы</h3>
+                <video controls width="400"><source src="./video/v1.mp4" type="video/mp4"></video>
+                <h3>Полезное видео</h3>
+                <!-- ============================================ -->
+                <!-- СПОСОБ 4 (продолжение): ЕЩЁ ОДИН INLINE CSS  -->
+                <!-- Атрибут style в теге iframe                   -->
+                <!-- ============================================ -->
+                <iframe width="400" height="225" src="https://www.youtube.com/embed/4Wzn4485J_4" 
+                        style="border: 2px solid #ffd966; border-radius: 12px;" allowfullscreen>
+                </iframe>
+            </section>
+
+            <section id="form">
+                <h2>Обратная связь</h2>
+                <form action="#" method="post">
+                    <fieldset>
+                        <legend>Напишите мне</legend>
+                        <label for="name">Ваше имя:</label>
+                        <input type="text" id="name" required placeholder="Введите имя">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required placeholder="example@mail.com">
+                        <label for="theme">Тема:</label>
+                        <select id="theme">
+                            <option>Предложение о работе</option>
+                            <option>Вопрос по монтажу</option>
+                            <option>Сотрудничество</option>
+                        </select>
+                        <label for="message">Сообщение:</label>
+                        <textarea id="message" rows="3" placeholder="Ваш текст..."></textarea>
+                        <p>Вы:</p>
+                        <label><input type="radio" name="person" value="client"> Клиент</label>
+                        <label><input type="radio" name="person" value="partner"> Партнёр</label>
+                        <label><input type="checkbox" required> Согласен на обработку данных</label>
+                        <button type="submit">📩 Отправить</button>
+                    </fieldset>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>© 2026 Петюшик Филипп | Гродно</p>
+            <p><a href="https://validator.w3.org/" target="_blank">Валидатор HTML</a> | 
+               <a href="https://jigsaw.w3.org/css-validator/" target="_blank">Валидатор CSS</a></p>
+        </footer>
+    </div>
+    <!--  3. Внутритеговое включение (способ 4)  -->
+    <!-- Кнопка авторизации в правом верхнем углу (inline-стили) -->
+    <div style="position: absolute; top: 20px; right: 20px; z-index: 100;">
+        <a href="LABA5/laba5.html" style="display: inline-block; padding: 8px 16px; margin-left: 8px; background-color: #1f6f8b; color: white; text-decoration: none; border-radius: 20px; font-weight: bold;">ЛР5 Flexbox</a>
+        <!-- При нажатии открывается новый файл login.html в новой вкладке (target="_blank") -->
+    </div>
+</body>
+</html>
